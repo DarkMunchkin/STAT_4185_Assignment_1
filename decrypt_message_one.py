@@ -34,10 +34,17 @@ cipher = {
     '.': '%' 
 }
 
+# Reverse the cipher dictionary to create a decryption dictionary
+decryption_cipher = {v: k for k, v in cipher.items()}
+
 encrypted_file = open("encrypted_message_one.txt", 'r')
 
 encrypted_message = encrypted_file.readline()
 
-encrypted_file.close()
+# Decrypt the message
+decrypted_message = ''.join([decryption_cipher.get(char, char) for char in encrypted_message])
 
-# Write code below
+# Print the decrypted message
+print(decrypted_message)
+
+encrypted_file.close()
